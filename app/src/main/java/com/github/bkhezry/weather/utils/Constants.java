@@ -4,27 +4,51 @@ public class Constants {
   public static final String BASE_URL = "https://api.openweathermap.org/data/2.5/";
   public static final String UNITS = "metric";
   public static final String[] DAYS_OF_WEEK = {
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
   };
   public static final String[] MONTH_NAME = {
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December"
+  };
+
+  public static final String[] DAYS_OF_WEEK_GERMAN = {
+          "Sonntag",
+          "Montag",
+          "Dienstag",
+          "Mittwoch",
+          "Donnerstag",
+          "Freitag",
+          "Samstag"
+  };
+  public static final String[] MONTH_NAME_GERMAN = {
+          "Januar",
+          "Februar",
+          "März",
+          "April",
+          "Mai",
+          "Juni",
+          "Juli",
+          "August",
+          "September",
+          "Oktober",
+          "November",
+          "Dezember"
   };
 
   public static final String[] DAYS_OF_WEEK_PERSIAN = {
@@ -52,15 +76,27 @@ public class Constants {
   };
 
   public static final String[] WEATHER_STATUS = {
-      "Thunderstorm",
-      "Drizzle",
-      "Rain",
-      "Snow",
-      "Atmosphere",
-      "Clear",
-      "Few Clouds",
-      "Broken Clouds",
-      "Cloud"
+          "Thunderstorm",
+          "Drizzle",
+          "Rain",
+          "Snow",
+          "Atmosphere",
+          "Clear",
+          "Few Clouds",
+          "Broken Clouds",
+          "Cloud"
+  };
+
+  public static final String[] WEATHER_STATUS_GERMAN = {
+          "Gewitter",
+          "Unbeständig",
+          "Regen",
+          "Schnee",
+          "Atmosphäre",
+          "Klar",
+          "Wenige Wolken",
+          "Durchbrochene Wolken",
+          "Wolkig"
   };
 
   public static final String[] WEATHER_STATUS_PERSIAN = {

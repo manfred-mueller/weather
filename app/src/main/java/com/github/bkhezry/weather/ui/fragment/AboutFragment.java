@@ -56,78 +56,56 @@ public class AboutFragment extends DialogFragment {
       }
       setTextWithLinks(view.findViewById(R.id.text_application_info), getString(R.string.application_info_text, versionName));
       setTextWithLinks(view.findViewById(R.id.text_developer_info), getString(R.string.developer_info_text));
+      setTextWithLinks(view.findViewById(R.id.text_translator_info), getString(R.string.translator_info_text));
       setTextWithLinks(view.findViewById(R.id.text_design_api), getString(R.string.design_api_text));
       setTextWithLinks(view.findViewById(R.id.text_libraries), getString(R.string.libraries_text));
       setTextWithLinks(view.findViewById(R.id.text_license), getString(R.string.license_text));
       if (currentLanguage.equals(LocaleManager.LANGUAGE_ENGLISH)) {
         binding.englishButton.setIcon(drawable);
+      } else if (currentLanguage.equals(LocaleManager.LANGUAGE_GERMAN)) {
+        binding.germanButton.setIcon(drawable);
       } else {
         binding.persianButton.setIcon(drawable);
       }
     }
     binding.nightModeSwitch.setChecked(SharedPreferencesUtil.getInstance(activity).isDarkThemeEnabled());
-    binding.nightModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-      @Override
-      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        SharedPreferencesUtil.getInstance(activity).setDarkThemeEnabled(isChecked);
-        if (isChecked) {
-          AppCompatDelegate.setDefaultNightMode(
-              AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
-          AppCompatDelegate.setDefaultNightMode(
-              AppCompatDelegate.MODE_NIGHT_NO);
-        }
-        activity.recreate();
+    binding.nightModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+      SharedPreferencesUtil.getInstance(activity).setDarkThemeEnabled(isChecked);
+      if (isChecked) {
+        AppCompatDelegate.setDefaultNightMode(
+            AppCompatDelegate.MODE_NIGHT_YES);
+      } else {
+        AppCompatDelegate.setDefaultNightMode(
+            AppCompatDelegate.MODE_NIGHT_NO);
+      }
+      activity.recreate();
+    });
+    binding.closeButton.setOnClickListener(v -> {
+      dismiss();
+      if (getFragmentManager() != null) {
+        getFragmentManager().popBackStack();
       }
     });
-    binding.closeButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        dismiss();
-        if (getFragmentManager() != null) {
-          getFragmentManager().popBackStack();
-        }
-      }
+    binding.englishButton.setOnClickListener(v -> {
+        MyApplication.localeManager.setNewLocale(activity, LocaleManager.LANGUAGE_ENGLISH);
+        restartActivity();
     });
-    binding.englishButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        if (currentLanguage.equals(LocaleManager.LANGUAGE_PERSIAN)) {
-          MyApplication.localeManager.setNewLocale(activity, LocaleManager.LANGUAGE_ENGLISH);
-          restartActivity();
-        }
-      }
+    binding.germanButton.setOnClickListener(v -> {
+        MyApplication.localeManager.setNewLocale(activity, LocaleManager.LANGUAGE_GERMAN);
+        restartActivity();
     });
-    binding.persianButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        if (currentLanguage.equals(LocaleManager.LANGUAGE_ENGLISH)) {
-          MyApplication.localeManager.setNewLocale(activity, LocaleManager.LANGUAGE_PERSIAN);
-          restartActivity();
-        }
-      }
+    binding.persianButton.setOnClickListener(v -> {
+        MyApplication.localeManager.setNewLocale(activity, LocaleManager.LANGUAGE_PERSIAN);
+        restartActivity();
     });
-    binding.toggleInfoButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        toggleView();
-      }
-    });
-    binding.toggleInfoLayout.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        toggleView();
-      }
-    });
+    binding.toggleInfoButton.setOnClickListener(v -> toggleView());
+    binding.toggleInfoLayout.setOnClickListener(v -> toggleView());
   }
 
   private void toggleView() {
     boolean show = toggleArrow(binding.toggleInfoButton);
     if (show) {
-      ViewAnimation.expand(binding.expandLayout, new ViewAnimation.AnimListener() {
-        @Override
-        public void onFinish() {
-        }
+      ViewAnimation.expand(binding.expandLayout, () -> {
       });
     } else {
       ViewAnimation.collapse(binding.expandLayout);

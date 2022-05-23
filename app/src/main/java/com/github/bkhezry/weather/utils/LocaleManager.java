@@ -14,6 +14,7 @@ import static android.os.Build.VERSION_CODES.N;
 
 public class LocaleManager {
   public static final String LANGUAGE_ENGLISH = "en";
+  public static final String LANGUAGE_GERMAN = "de";
   public static final String LANGUAGE_PERSIAN = "fa";
   private final SharedPreferences prefs;
 
@@ -36,7 +37,7 @@ public class LocaleManager {
   }
 
   public String getLanguage() {
-    return prefs.getString(Constants.LANGUAGE, LANGUAGE_ENGLISH);
+    return prefs.getString(Constants.LANGUAGE, LANGUAGE_GERMAN);
   }
 
   @SuppressLint("ApplySharedPref")

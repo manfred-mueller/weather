@@ -47,7 +47,7 @@ import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
 public class MultipleDaysFragment extends DialogFragment {
-  private String defaultLang = "en";
+  private String defaultLang = "de";
   private CompositeDisposable disposable = new CompositeDisposable();
   private FastAdapter<MultipleDaysWeather> mFastAdapter;
   private ItemAdapter<MultipleDaysWeather> mItemAdapter;

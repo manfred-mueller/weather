@@ -58,6 +58,20 @@
                     android:layout_height="0dp" />
 
                 <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:id="@+id/german_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_middle"
+                    android:gravity="center"
+                    android:text="@string/german_label"
+                    android:textAllCaps="false"
+                    app:backgroundTint="@color/grey_10" />
+
+                <View
+                    android:layout_width="@dimen/spacing_medium"
+                    android:layout_height="0dp" />
+
+                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                     android:id="@+id/persian_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -138,6 +152,15 @@
 
                         <TextView
                             android:id="@+id/text_developer_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            style="@style/HeadlineTextStyle"
+                            android:text="@string/translator_info_title" />
+
+                        <TextView
+                            android:id="@+id/text_translator_info"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
 

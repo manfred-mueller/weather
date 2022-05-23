@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity {
   private FastAdapter<FiveDayWeather> mFastAdapter;
   private ItemAdapter<FiveDayWeather> mItemAdapter;
   private CompositeDisposable disposable = new CompositeDisposable();
-  private String defaultLang = "en";
+  private String defaultLang = "de";
   private List<FiveDayWeather> fiveDayWeathers;
   private ApiService apiService;
   private FiveDayWeather todayFiveDayWeather;

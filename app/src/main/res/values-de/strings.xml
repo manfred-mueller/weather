@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wetter</string>
+    <string name="cancel_label">Abbrechen</string>
+    <string name="store_label">Speichern</string>
+    <string name="license_title">Lizenz</string>
+    <string name="libraries_title">Bibliotheken &amp; Quellen</string>
+    <string name="developer_info_title">Entwickler-Info</string>
+    <string name="design_api_title">Design &amp; API</string>
+    <string name="application_info_title">Programm-Info</string>
+    <string name="application_info_text">
+        <![CDATA[
+            <p>
+            <b>Wetteranwendung</b>
+            <br/>
+            Version: %1$s
+            <br/>
+            Dieses Programm ist open source auf <br/><a href="https://github.com/bkhezry/weather">https://github.com/bkhezry/weather</a></p>
+        ]]>
+    </string>
+    <string name="developer_info_text">
+        <![CDATA[
+            <p>Behrouz Khezry <a href="https://twitter.com/bkhezry">@bkhezry</a></p>
+        ]]>
+    </string>
+    <string name="translator_info_text">
+        <![CDATA[
+            <p>Manfred M&uuml;ller <a href="https://manfred-mueller.org">https://manfred-mueller.org</a></p>
+        ]]>
+    </string>
+    <string name="design_api_text">
+        <![CDATA[
+            <p>
+            <a href="https://www.uplabs.com/posts/weather-app-freebie">Weather App Freebie</a> von Raman Yv
+            <br/>
+            <a href="https://lottiefiles.com/user/26177">Lottie & Icon files</a> von jochang
+            <br/>
+            <a href="http://openweathermap.org/">OpenWeatherMap</a> Weather API
+            </p>
+        ]]>
+    </string>
+    <string name="license_text">
+        <![CDATA[
+            <p>Copyright 2019 Behrouz Khezry</p>
+            <p>Licenziert unter der Apache Lizenz, Version 2.0 (die "Lizenz");
+            Sie dürfen diese Datei nur in Übereinstimmung mit der Lizenz verwenden.
+            Eine Kopie der Lizenz erhalten Sie unter</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+            <p>Sofern nicht durch geltendes Recht vorgeschrieben oder schriftlich vereinbart, wird
+            die unter dieser Lizenz vertriebene Software auf einer "WIE BESEHEN"-BASIS vertrieben,
+            OHNE GARANTIEN ODER BEDINGUNGEN JEGLICHER ART, weder ausdrücklich noch stillschweigend.
+            Siehe die Lizenz für die spezifischen Sprachregelungsberechtigungen und
+            Beschränkungen unter der Lizenz.</p>
+        ]]>
+    </string>
+    <string name="libraries_text">
+        <![CDATA[
+           <p>
+            <a href="https://github.com/JakeWharton/butterknife">ButterKnife</a> - Apache-2.0
+            <br/>
+            <a href="https://github.com/square/retrofit">Retrofit</a> - Apache-2.0
+            <br/>
+            <a href="https://github.com/ReactiveX/RxAndroid">RxAndroid</a> - Apache-2.0
+            <br/>
+            <a href="https://github.com/objectbox/objectbox-java">ObjectBox</a> - Apache-2.0
+            <br/>
+            <a href="https://github.com/mikepenz/FastAdapter">FastAdapter</a> - Apache-2.0
+            <br/>
+            <a href="https://github.com/bumptech/glide">Glide</a> - Apache-2.0
+            <br/>
+            <a href="https://github.com/airbnb/lottie-android">Lottie-Android</a> - Apache-2.0
+            <br/>
+            <a href="https://github.com/MiguelCatalan/MaterialSearchView">MaterialSearchView</a> - Apache-2.0
+            <br/>
+            <a href="https://github.com/pwittchen/prefser">Prefser</a> - Apache-2.0
+            <br/>
+            <a href="https://github.com/PhilJay/MPAndroidChart">MPAndroidChart</a> - Apache-2.0
+            <br/>
+            <a href="https://github.com/InflationX/Calligraphy">Calligraphy</a> - Apache-2.0
+            <br/>
+            <a href="https://github.com/google/material-design-icons">Material design icons</a> - Creative Common Attribution 4.0 International License
+           </p>
+
+        ]]>
+</string>
+    <string name="current_label">Aktuell</string>
+    <string name="humidity_label">Luftfeuchtigkeit</string>
+    <string name="wind_label">Wind</string>
+    <string name="next_4_days_hourly">Nächste 4 Tage / Stündlich</string>
+    <string name="next_15_days_label">Nächste 15 Tage</string>
+    <string name="search_for_a_city_label">Nach Stadt suchen</string>
+    <string name="zero_label">0%d</string>
+    <string name="wind_unit_label">%.0f km/h</string>
+    <string name="openweathermap_api_key_label">OpenWeatherMap-API-Schlüssel</string>
+    <string name="api_key_description">Zur Benutzung benötigen Sie einen OpenWeatherMap API Schlüssel. Bitte unteren Link öffnen und eine Konto erstellen. Danach können Sie den API-Schlüssel benutzen.</string>
+    <string name="get_api_key_label">API-Schlüssel bekommen</string>
+    <string name="api_key_label">API-Schlüssel</string>
+    <string name="english_label" translatable="false">Englisch</string>
+    <string name="persian_label" translatable="false">Iranisch</string>
+    <string name="search_label">Suchen</string>
+    <string name="no_internet_message">Bitte Internetverbindung prüfen</string>
+    <string name="no_city_found_message">Keine Stadt dieses Namens gefunden</string>
+    <string name="invalid_api_key_message">API-Schlüssel ungültig. Bitte nächste Aktualisierung abwarten.</string>
+    <string name="network_exception_message">Internetverbindung gestört</string>
+    <string name="retry_label">Erneut versuchen</string>
+    <string name="ok_label">OK</string>
+    <string name="night_mode_label">Nachtmodus</string>
+    <string name="german_label">Deutsch</string>
+    <string name="search">Search</string>
+    <string name="translator_info_title">Übersetzer</string>
+</resources>
