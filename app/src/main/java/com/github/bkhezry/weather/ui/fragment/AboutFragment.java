@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -61,11 +62,11 @@ public class AboutFragment extends DialogFragment {
       setTextWithLinks(view.findViewById(R.id.text_libraries), getString(R.string.libraries_text));
       setTextWithLinks(view.findViewById(R.id.text_license), getString(R.string.license_text));
       if (currentLanguage.equals(LocaleManager.LANGUAGE_ENGLISH)) {
-        binding.englishButton.setIcon(drawable);
+        binding.englishButton.setTextColor(Color.parseColor("#009688"));
       } else if (currentLanguage.equals(LocaleManager.LANGUAGE_GERMAN)) {
-        binding.germanButton.setIcon(drawable);
+        binding.germanButton.setTextColor(Color.parseColor("#009688"));
       } else {
-        binding.persianButton.setIcon(drawable);
+        binding.persianButton.setTextColor(Color.parseColor("#009688"));
       }
     }
     binding.nightModeSwitch.setChecked(SharedPreferencesUtil.getInstance(activity).isDarkThemeEnabled());

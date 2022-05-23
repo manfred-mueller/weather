@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.github.bkhezry.weather.R;
@@ -52,7 +51,6 @@ import io.objectbox.Box;
 import io.objectbox.BoxStore;
 import io.objectbox.android.AndroidScheduler;
 import io.objectbox.query.Query;
-import io.objectbox.reactive.DataObserver;
 import io.objectbox.reactive.DataSubscriptionList;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -114,12 +112,7 @@ public class MainActivity extends BaseActivity {
         return false;
       }
     });
-    binding.toolbarLayout.searchView.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        binding.toolbarLayout.searchView.showSearch();
-      }
-    });
+    binding.toolbarLayout.searchView.setOnClickListener(v -> binding.toolbarLayout.searchView.showSearch());
 
   }
 
@@ -136,23 +129,18 @@ public class MainActivity extends BaseActivity {
         android.R.color.holo_green_light,
         android.R.color.holo_orange_light,
         android.R.color.holo_red_light);
-    binding.swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-
-      @Override
-      public void onRefresh() {
-        cityInfo = prefser.get(Constants.CITY_INFO, CityInfo.class, null);
-        if (cityInfo != null) {
-          long lastStored = prefser.get(Constants.LAST_STORED_CURRENT, Long.class, 0L);
-          if (AppUtil.isTimePass(lastStored)) {
-            requestWeather(cityInfo.getName(), false);
-          } else {
-            binding.swipeContainer.setRefreshing(false);
-          }
+    binding.swipeContainer.setOnRefreshListener(() -> {
+      cityInfo = prefser.get(Constants.CITY_INFO, CityInfo.class, null);
+      if (cityInfo != null) {
+        long lastStored = prefser.get(Constants.LAST_STORED_CURRENT, Long.class, 0L);
+        if (AppUtil.isTimePass(lastStored)) {
+          requestWeather(cityInfo.getName(), false);
         } else {
           binding.swipeContainer.setRefreshing(false);
         }
+      } else {
+        binding.swipeContainer.setRefreshing(false);
       }
-
     });
     binding.bar.setNavigationOnClickListener(new View.OnClickListener() {
       @Override
@@ -161,12 +149,7 @@ public class MainActivity extends BaseActivity {
       }
     });
     typeface = Typeface.createFromAsset(getAssets(), "fonts/Vazir.ttf");
-    binding.nextDaysButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        AppUtil.showFragment(new MultipleDaysFragment(), getSupportFragmentManager(), true);
-      }
-    });
+    binding.nextDaysButton.setOnClickListener(v -> AppUtil.showFragment(new MultipleDaysFragment(), getSupportFragmentManager(), true));
     binding.contentMainLayout.todayMaterialCard.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -217,26 +200,23 @@ public class MainActivity extends BaseActivity {
   private void showStoredCurrentWeather() {
     Query<CurrentWeather> query = DbUtil.getCurrentWeatherQuery(currentWeatherBox);
     query.subscribe(subscriptions).on(AndroidScheduler.mainThread())
-        .observer(new DataObserver<List<CurrentWeather>>() {
-          @Override
-          public void onData(@NonNull List<CurrentWeather> data) {
-            if (data.size() > 0) {
-              hideEmptyLayout();
-              CurrentWeather currentWeather = data.get(0);
-              if (isLoad) {
-                binding.contentMainLayout.tempTextView.setText(String.format(Locale.getDefault(), "%.0f°", currentWeather.getTemp()));
-                binding.contentMainLayout.descriptionTextView.setText(AppUtil.getWeatherStatus(currentWeather.getWeatherId(), AppUtil.isRTL(MainActivity.this)));
-                binding.contentMainLayout.humidityTextView.setText(String.format(Locale.getDefault(), "%d%%", currentWeather.getHumidity()));
-                binding.contentMainLayout.windTextView.setText(String.format(Locale.getDefault(), getResources().getString(R.string.wind_unit_label), currentWeather.getWindSpeed()));
-              } else {
-                binding.contentMainLayout.tempTextView.setCurrentText(String.format(Locale.getDefault(), "%.0f°", currentWeather.getTemp()));
-                binding.contentMainLayout.descriptionTextView.setCurrentText(AppUtil.getWeatherStatus(currentWeather.getWeatherId(), AppUtil.isRTL(MainActivity.this)));
-                binding.contentMainLayout.humidityTextView.setCurrentText(String.format(Locale.getDefault(), "%d%%", currentWeather.getHumidity()));
-                binding.contentMainLayout.windTextView.setCurrentText(String.format(Locale.getDefault(), getResources().getString(R.string.wind_unit_label), currentWeather.getWindSpeed()));
-              }
-              binding.contentMainLayout.animationView.setAnimation(AppUtil.getWeatherAnimation(currentWeather.getWeatherId()));
-              binding.contentMainLayout.animationView.playAnimation();
+        .observer(data -> {
+          if (data.size() > 0) {
+            hideEmptyLayout();
+            CurrentWeather currentWeather = data.get(0);
+            if (isLoad) {
+              binding.contentMainLayout.tempTextView.setText(String.format(Locale.getDefault(), "%.0f°", currentWeather.getTemp()));
+              binding.contentMainLayout.descriptionTextView.setText(AppUtil.getWeatherStatus(currentWeather.getWeatherId(), AppUtil.isRTL(MainActivity.this)));
+              binding.contentMainLayout.humidityTextView.setText(String.format(Locale.getDefault(), "%d%%", currentWeather.getHumidity()));
+              binding.contentMainLayout.windTextView.setText(String.format(Locale.getDefault(), getResources().getString(R.string.wind_unit_label), currentWeather.getWindSpeed()));
+            } else {
+              binding.contentMainLayout.tempTextView.setCurrentText(String.format(Locale.getDefault(), "%.0f°", currentWeather.getTemp()));
+              binding.contentMainLayout.descriptionTextView.setCurrentText(AppUtil.getWeatherStatus(currentWeather.getWeatherId(), AppUtil.isRTL(MainActivity.this)));
+              binding.contentMainLayout.humidityTextView.setCurrentText(String.format(Locale.getDefault(), "%d%%", currentWeather.getHumidity()));
+              binding.contentMainLayout.windTextView.setCurrentText(String.format(Locale.getDefault(), getResources().getString(R.string.wind_unit_label), currentWeather.getWindSpeed()));
             }
+            binding.contentMainLayout.animationView.setAnimation(AppUtil.getWeatherAnimation(currentWeather.getWeatherId()));
+            binding.contentMainLayout.animationView.playAnimation();
           }
         });
   }
@@ -244,14 +224,11 @@ public class MainActivity extends BaseActivity {
   private void showStoredFiveDayWeather() {
     Query<FiveDayWeather> query = DbUtil.getFiveDayWeatherQuery(fiveDayWeatherBox);
     query.subscribe(subscriptions).on(AndroidScheduler.mainThread())
-        .observer(new DataObserver<List<FiveDayWeather>>() {
-          @Override
-          public void onData(@NonNull List<FiveDayWeather> data) {
-            if (data.size() > 0) {
-              todayFiveDayWeather = data.remove(0);
-              mItemAdapter.clear();
-              mItemAdapter.add(data);
-            }
+        .observer(data -> {
+          if (data.size() > 0) {
+            todayFiveDayWeather = data.remove(0);
+            mItemAdapter.clear();
+            mItemAdapter.add(data);
           }
         });
   }
@@ -355,14 +332,11 @@ public class MainActivity extends BaseActivity {
           .with(binding.swipeContainer)
           .setMessage(getString(R.string.network_exception_message))
           .setDuration(SnackbarUtil.LENGTH_LONG)
-          .setAction(getResources().getString(R.string.retry_label), new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-              if (cityInfo != null) {
-                requestWeather(cityInfo.getName(), false);
-              } else {
-                binding.toolbarLayout.searchView.showSearch();
-              }
+          .setAction(getResources().getString(R.string.retry_label), v -> {
+            if (cityInfo != null) {
+              requestWeather(cityInfo.getName(), false);
+            } else {
+              binding.toolbarLayout.searchView.showSearch();
             }
           })
           .showWarning();

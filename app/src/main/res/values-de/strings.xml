@@ -96,7 +96,7 @@
     <string name="get_api_key_label">API-Schlüssel bekommen</string>
     <string name="api_key_label">API-Schlüssel</string>
     <string name="english_label" translatable="false">Englisch</string>
-    <string name="persian_label" translatable="false">Iranisch</string>
+    <string name="persian_label" translatable="false">Farsi</string>
     <string name="search_label">Suchen</string>
     <string name="no_internet_message">Bitte Internetverbindung prüfen</string>
     <string name="no_city_found_message">Keine Stadt dieses Namens gefunden</string>

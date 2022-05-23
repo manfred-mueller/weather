@@ -19,7 +19,8 @@
         app:backgroundTint="?attr/colorPrimary"
         app:fabSize="mini"
         app:srcCompat="@drawable/ic_close_black_24dp"
-        app:tint="?attr/colorControlNormal" />
+        app:tint="?attr/colorControlNormal"
+        android:contentDescription="@string/close_button" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_view"
@@ -128,7 +129,8 @@
                             android:layout_width="?attr/actionBarSize"
                             android:layout_height="?attr/actionBarSize"
                             android:background="?attr/selectableItemBackgroundBorderless"
-                            app:srcCompat="@drawable/ic_keyboard_arrow_down_black_24dp" />
+                            app:srcCompat="@drawable/ic_keyboard_arrow_down_black_24dp"
+                            android:contentDescription="@string/toggle_info_button" />
 
                     </LinearLayout>
 
